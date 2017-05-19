@@ -1,0 +1,54 @@
+<html>
+<header>
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+</header>
+<body>
+
+<h1>{$node_name}</h1>
+
+<p align="Justify">El módulo de Addons fue desarrollado para que los usuarios puedan instalar o comprar (addons comerciales) nuevos módulos creados tanto por el proyecto Issabel como por otros.</p>
+
+<p align="Justify">Este módulo es bastante fácil de usar. Usted verá una lista de todos los módulos disponibles para instalar en su servidor Issabel.</p>
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_addons1.png" border="0" />
+<p>Figura 1</p></div>
+<br />
+
+<p>Los addons solo pueden instalarse uno a la vez debido a que este proceso utiliza yum para realizar las acciones.</p>
+
+<h2>Filtro de Addons</h2>
+
+<p align="Justify">El módulo de Addons cuenta con los siguientes filtros:</p>
+
+<p align="Justify">&nbsp;&nbsp;&nbsp;1. Menú desplegable “Filtrar por”: las opciones de filtrado disponibles aquí son:</p>
+<ul>
+<li>Disponible.- Muestra todos los addons disponibles.</li>
+<li>Instalado.- Muestra los addons que están actualmente instalados en el servidor.</li>
+<li>Comprado.- Muestra todos los addons comerciales que han sido adquiridos por el usuario.</li>
+<li>Actualización Disponible.- Muestra todos los addons que están instalados en el servidor y tienen una actualización disponible.</li>
+</ul>
+
+<p align="Justify">&nbsp;&nbsp;&nbsp;2. Caja de texto “Nombre”:  aquí puede buscar un addon que contenga la cadena escrita en esta caja de texto.</p>
+
+
+<h2>Más información de los addons</h2>
+<p align="Justify">Si desea ver más información acerca de un addon haga click en el enlace "Más info..." ubicado en la parte inferior derecha de cada addon en la lista. Esto lo llevará a la página web de addons para Issabel.</p>
+
+
+<h2>Acciones</h2>
+<p align="Justify">Básicamente existen 5 acciones posibles a realizar:</p>
+<ul>
+<li><b>INSTALAR .-</b> Instala el addon mostrando una barra de progreso. Durante el tiempo de instalación la misma puede ser cancelada.</li>
+<li><b>ACTUALIZAR .-</b> Actualiza un addon previamente instalado en el servidor Issabel.</li>
+<li><b>DESINSTALAR .-</b> Desinstala una addon previamente instalado en el servidor Issabel.</li>
+<li><b>PROBAR .-</b> Instala una versión de prueba de un addon comercial.</li>
+
+<li><b>COMPRAR .-</b> Permite realizar la compra de un addon comercial. Este proceso internamente revisa si hay problemas de dependencias con otros paquetes, luego revisa el elastix-key para comprobar que el servidor Issabel está registrado. Si no lo está se mostrará una ventana para realizar el registro (Ver Figura 2). Luego del registro automáticamente el usuario será redirigido a store.palosanto.com para que pueda realizar la compra del addon.</li>
+</ul>
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_registration.png" border="0" />
+<p>Figura 2</p></div>
+<br />
+
+</body>
+</html>

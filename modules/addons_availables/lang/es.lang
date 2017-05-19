@@ -1,0 +1,75 @@
+<?php
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+   Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Issabel version 2.3                                                  |
+  | http://www.elastix.com                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | Cdla. Nueva Kennedy Calle E 222 y 9na. Este                          |
+  | Telfs. 2283-268, 2294-440, 2284-356                                  |
+  | Guayaquil - Ecuador                                                  |
+  | http://www.palosanto.com                                             |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on "AS IS"     |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Original Code is: Issabel Open Source.                           |
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  |                                                                      |
+  | Translated by: José Briones                                        |
+  | Email: jbriones@elastix.com                                         |
+  +----------------------------------------------------------------------+
+  $Id: en.lang,v 1.7 2013-08-05 19:39:38 username Exp $ */
+global $arrLangModule;
+$arrLangModule=array(
+"Filter by" => "Filtrar por",
+"Name" => "Nombre",
+"Available" => "Disponible",
+"Installed" => "Instalado",
+"Purchased" => "Comprado",
+"Update Available" => "Actualización Disponible",
+"Showing" => "Mostrando",
+"TRIAL" => "PROBAR",
+"INSTALL" => "INSTALAR",
+"BUY" => "COMPRAR",
+"UPDATE" => "ACTUALIZAR",
+"Location" => "Ubicación",
+"Note" => "Nota",
+"More info" => "Más info",
+"UNINSTALL" => "DESINSTALAR",
+"of" => "de",
+"by" => "por",
+"Installing/Updating" => "Instalando/Actualizando",
+"Transaction" => "Transacción",
+"Resolving dependencies" => "Resolviendo dependencias",
+"Downloading package" => "Descargando paquete",
+"Installing package" => "Instalando paquete",
+"Refreshing repos" => "Refrescando repositorios",
+"Addon" => "Addon",
+"was successfully" => "fue exitosamente",
+"Uninstalling" => "Desinstalando",
+"Removing package" => "Removiendo paquete",
+"has no problem with dependencies" => "no tiene problemas con dependencias",
+"Checking Dependencies" => "Revisando Dependencias",
+"Sorry, you can not cancel the transaction on this stage" => "Lo siento, no es posible cancelar la transacción en este momento",
+"Cancelling. This process could take several minutes, please wait" => "Cancelando. Este proceso puede tomar varios minutos, por favor espere",
+"The cancel signal was already sent, this could take several minutes, please wait" => "La orden de cancelación ya fue enviada, esto puede tomar varios minutos, por favor espere",
+"Sorry, another transaction is already in process" => "Lo siento, otra transacción se encuentra en proceso.",
+"No addons match your search criteria" => "No se encontraron Addons con este criterio de búsqueda",
+"Addon Market" => "Tienda de Addons",
+"Are you sure you want to cancel this transaction?" => "¿Está seguro que desea cancelar esta transacción?",
+"Please wait..." => "Por favor espere...",
+"Warning" => "Advertencia",
+"Server id is not defined, you need to register your Issabel" => "El ID del Servidor no está definido. Usted necesita registrar su Issabel",
+"The system can not connect to the Web Service resource. Please check your Internet connection." => "El sistema no puede conectarse con el servidor web. Por favor revise su conexión a Internet",
+);
+?>

@@ -1,0 +1,57 @@
+<html>
+<header>
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+</header>
+<body>
+
+<h1>{$node_name}</h1>
+
+<p align="Justify">The Addons module was developed so that users can install or buy (for commercial addons) new modules created either by the Issabel Project Team or by others.</p>
+
+<p align="Justify">This module is pretty simple to use. A list of available packages that the user can install or buy will be loaded when you go to this module. Once the loading is finished, the list of available packages will be shown.</p>
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_addons1.png" border="0" />
+<p>Figure 1</p></div>
+<br />
+
+<p>In case of a transaction in progress, a progress dialog of it will be shown. You can only install one package at a time, i.e. you have to wait for the first installation to complete in order to be able to start the next one. This is because the yum process is used for the installation of the packages.</p>
+
+<h2>Addons Filtering</h2>
+
+<p align="Justify">At the moment this module has the following filters available:</p>
+
+<p align="Justify">&nbsp;&nbsp;&nbsp;1. “Filter by” drop-down menu: the filtering options available in this menu are:</p>
+<ul>
+<li>Available.- Returns all available addons.</li>
+<li>Installed.- Returns all addons that are currently installed on the server.</li>
+<li>Purchased.- Returns all commercial addons that have been purchased.</li>
+<li>Update Available.- Returns all addons that are installed on the server and have a new version available for update.</li>
+</ul>
+
+<p align="Justify">&nbsp;&nbsp;&nbsp;2. “Name” textbox:  here you can search all addons that contain the string entered in the textbox, to execute the search you can click on the magnifying glass icon or press enter.</p>
+
+
+<h2>Pages</h2>
+<p align="Justify">To go to another page you just have to click on the buttons on the control page section at the right side.</p>
+
+
+<h2>More information about an addon</h2>
+<p align="Justify">If you want more information about a particular addon, you must click on the "More info ..." link located at the bottom of each addon. This will open another tab with the page providing more information.</p>
+
+
+<h2>Actions</h2>
+<p align="Justify">Basically you can do 5 actions:</p>
+<ul>
+<li><b>INSTALL .-</b> Pressing this button will install the corresponding addon. A transaction in progress can also be canceled by clicking the "X" on the progress window.</li>
+<li><b>UPDATE .-</b> Pressing this button will perform an update of a previously installed addon.</li>
+<li><b>UNINSTALL .-</b> Pressing this button will uninstall the selected addon.</li>
+<li><b>TRIAL .-</b> This button installs the trial version of a commercial addon.</li>
+<li><b>BUY .-</b> This button is for purchasing commercial addons. The process internally checks if there are no dependency problems, if none exist, the elastix-key is checked, if the process finds that the server is not registered yet, the Issabel Server Registration Form window will be displayed (See Figure 2). Once the registration form is filled, the browser is redirected to store.palosanto.com to allow the user to proceed with the purchase of the addon.</li>
+</ul>
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_registration.png" border="0" />
+<p>Figure 2</p></div>
+<br />
+
+</body>
+</html>
