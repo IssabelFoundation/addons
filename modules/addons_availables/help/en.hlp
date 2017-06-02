@@ -47,7 +47,7 @@
 <li><b>UPDATE .-</b> Pressing this button will perform an update of a previously installed addon.</li>
 <li><b>UNINSTALL .-</b> Pressing this button will uninstall the selected addon.</li>
 <li><b>TRIAL .-</b> This button installs the trial version of a commercial addon.</li>
-<li><b>BUY .-</b> This button is for purchasing commercial addons. The process internally checks if there are no dependency problems, if none exist, the elastix-key is checked, if the process finds that the server is not registered yet, the Issabel Server Registration Form window will be displayed (See Figure 2). Once the registration form is filled, the browser is redirected to store.palosanto.com to allow the user to proceed with the purchase of the addon.</li>
+<li><b>BUY .-</b> This button is for purchasing commercial addons. The process internally checks if there are no dependency problems, if none exist, the issabel-key is checked, if the process finds that the server is not registered yet, the Issabel Server Registration Form window will be displayed (See Figure 2). Once the registration form is filled, the browser is redirected to store.issabel.com to allow the user to proceed with the purchase of the addon.</li>
 </ul>
 <div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_registration.png" border="0" />
 <p>Figure 2</p></div>
