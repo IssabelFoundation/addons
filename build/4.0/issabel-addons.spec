@@ -20,7 +20,6 @@ Requires: coreutils
 Requires: rpm
 
 Obsoletes: elastix-addons
-Provides: elastix-addons
 
 %description
 Issabel Addons
