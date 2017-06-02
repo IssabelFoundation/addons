@@ -1,0 +1,10 @@
+--- setup/etc/yum.repos.d/commercial-addons.repo.old    2017-05-30 21:12:28.250542002 -0500
++++ setup/etc/yum.repos.d/commercial-addons.repo        2017-05-30 21:12:43.844542795 -0500
+@@ -1,6 +1,6 @@
+ [commercial-addons]
+ name=Commercial-Addons RPM Repository for Issabel
+-mirrorlist=http://mirror.issabel.org/?release=2.5&arch=$basearch&repo=commercial_addons
++mirrorlist=http://mirror.issabel.org/?release=4&arch=$basearch&repo=commercial_addons
+ gpgcheck=1
+ enabled=1
+ gpgkey=http://repo.issabel.org/issabel/RPM-GPG-KEY-Issabel
