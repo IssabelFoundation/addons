@@ -231,7 +231,7 @@ class paloSantoAddons
      * @param   string  $filter_type  Tipo de filtro a aplicar, comprado, instalado, actualización disponible o disponibles
      * @param   string  $sNombre      Nombre de addon a buscar, o NULL para todos
      * @param   string  $sCategoria   all, commercial, noncommercial
-     * @param   string  $sid          Clave de registro de /etc/elastix.key
+     * @param   string  $sid          Clave de registro de /etc/issabel.key
      * 
      * @return mixed    NULL en caso de error, o lista de tuplas con el siguiente
      *                  esquema: 

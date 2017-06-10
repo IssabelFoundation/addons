@@ -25,11 +25,11 @@
   | The Original Code is: Elastix Open Source.                           |
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: ElastixInstallerProcess.class.php,v 1.48 2009/03/26 13:46:58 alex Exp $ */
+  $Id: IssabelInstallerProcess.class.php,v 1.48 2009/03/26 13:46:58 alex Exp $ */
 require_once('AbstractProcess.class.php');
 require_once('/var/www/html/libs/paloSantoDB.class.php');
 
-class ElastixInstallerProcess extends AbstractProcess
+class IssabelInstallerProcess extends AbstractProcess
 {
     private $_debug = FALSE;    // Setear a TRUE para mostrar salida de yum
 

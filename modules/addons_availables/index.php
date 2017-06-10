@@ -59,7 +59,7 @@ require_once 'libs/JSON.php';
  *   visitar el módulo, idealmente sin que tengan que refrescar manualmente
  *   cuando una cualquiera de ellas inicia una operación.
  *   TODO: puede ser necesario implementar un broadcast o aviso de refresco con
- *   tiempo/ID para que a través del demonio elxupdaterd, una sesión le avise
+ *   tiempo/ID para que a través del demonio issupdaterd, una sesión le avise
  *   a las demás de que ha hecho algo, probablemente modificar estado común.
  * - Persistencia frente a logout: incluso si se realiza logout de la sesión,
  *   el actualizador continúa trabajando. Luego de volver a hacer login, se debe
@@ -72,7 +72,7 @@ require_once 'libs/JSON.php';
  * - operacion: none, install, update, remove
  * - accion:  none, confirm, reporefresh, depsolving, downloading, applying, cancelling
  *   Las acciones listadas se corresponden con nombres de acciones de status
- *   del demonio elxupdaterd, excepto que no se usa checkinstalled.
+ *   del demonio issupdaterd, excepto que no se usa checkinstalled.
  * - package: lista de paquetes que serán afectados por la operación, junto con
  *   operación, longitudes descargada/total, estado
  * 
@@ -273,7 +273,7 @@ function do_iniciarInstallUpdate($smarty, $module_name, $local_templates_dir)
     }
     else{
 	$respuesta["status"] = $oAddons->installAddon($name_rpm);
-	$user = $_SESSION["elastix_user"];
+	$user = $_SESSION["issabel_user"];
 	if(!$oAddons->saveActionTmp($name_rpm,"Installing/Updating", $user)){
 	    $respuesta["db_error"] = $oAddons->getErrMsg();
 	    return $json->encode($respuesta);
@@ -316,7 +316,7 @@ function do_iniciarUninstall($smarty, $module_name, $local_templates_dir)
     }
     else{
 	$respuesta["status"] = $oAddons->uninstallAddon($name_rpm);
-	$user = $_SESSION["elastix_user"];
+	$user = $_SESSION["issabel_user"];
 	if(!$oAddons->saveActionTmp($name_rpm,"Uninstalling", $user)){
 	    $respuesta["db_error"] = $oAddons->getErrMsg();
 	    return $json->encode($respuesta);
@@ -353,7 +353,7 @@ function do_checkDependencies($smarty, $module_name, $local_templates_dir)
     }
     else{
 	$respuesta["status"] = $oAddons->checkDependencies($name_rpm);
-	$user = $_SESSION["elastix_user"];
+	$user = $_SESSION["issabel_user"];
 	if(!$oAddons->saveActionTmp($name_rpm,"Checking Dependencies", $user)){
 	    $respuesta["db_error"] = $oAddons->getErrMsg();
 	    return $json->encode($respuesta);
@@ -423,8 +423,8 @@ function do_checkStatus($smarty, $module_name, $local_templates_dir)
             $respuesta["transaction_status"] = _tr("Addon")." $action_tmp[name_rpm] "._tr("was successfully")." "._tr(getWordInPast($action_tmp["action_rpm"]));
             
             // Para addon instalado, se debe borrar la cache de permisos de usuario
-            if (isset($_SESSION['elastix_user_permission']))
-                unset($_SESSION['elastix_user_permission']);
+            if (isset($_SESSION['issabel_user_permission']))
+                unset($_SESSION['issabel_user_permission']);
         }
     }
     return $json->encode($respuesta);

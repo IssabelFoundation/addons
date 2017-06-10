@@ -36,11 +36,11 @@ mkdir -p    $RPM_BUILD_ROOT/var/www/html/
 mv modules/ $RPM_BUILD_ROOT/var/www/html/
 
 # Additional (module-specific) files that can be handled by RPM
-mkdir -p $RPM_BUILD_ROOT/opt/elastix/
-mv setup/elastix-moduleconf $RPM_BUILD_ROOT/opt/elastix/elastix-updater
+mkdir -p $RPM_BUILD_ROOT/opt/issabel/
+mv setup/issabel-moduleconf $RPM_BUILD_ROOT/opt/issabel/issabel-updater
 mkdir -p $RPM_BUILD_ROOT/etc/init.d/
-mv $RPM_BUILD_ROOT/opt/elastix/elastix-updater/elastix-updaterd $RPM_BUILD_ROOT/etc/init.d/
-chmod +x $RPM_BUILD_ROOT/etc/init.d/elastix-updaterd
+mv $RPM_BUILD_ROOT/opt/issabel/issabel-updater/issabel-updaterd $RPM_BUILD_ROOT/etc/init.d/
+chmod +x $RPM_BUILD_ROOT/etc/init.d/issabel-updaterd
 mkdir -p $RPM_BUILD_ROOT/etc/yum.repos.d/
 
 ## Add the GNU Privacy Guard for the Postgresql91 repo
@@ -50,25 +50,25 @@ rmdir setup/etc/pki
 
 # The following folder should contain all the data that is required by the installer,
 # that cannot be handled by RPM.
-mkdir -p    $RPM_BUILD_ROOT/usr/share/elastix/module_installer/%{name}-%{version}-%{release}/
+mkdir -p    $RPM_BUILD_ROOT/usr/share/issabel/module_installer/%{name}-%{version}-%{release}/
 mv setup/etc/yum.repos.d/ $RPM_BUILD_ROOT/etc/
 
 rmdir setup/etc
-mv setup/   $RPM_BUILD_ROOT/usr/share/elastix/module_installer/%{name}-%{version}-%{release}/
-mv menu.xml $RPM_BUILD_ROOT/usr/share/elastix/module_installer/%{name}-%{version}-%{release}/
+mv setup/   $RPM_BUILD_ROOT/usr/share/issabel/module_installer/%{name}-%{version}-%{release}/
+mv menu.xml $RPM_BUILD_ROOT/usr/share/issabel/module_installer/%{name}-%{version}-%{release}/
 
 %pre
-mkdir -p /usr/share/elastix/module_installer/%{name}-%{version}-%{release}/
-touch /usr/share/elastix/module_installer/%{name}-%{version}-%{release}/preversion_%{modname}.info
+mkdir -p /usr/share/issabel/module_installer/%{name}-%{version}-%{release}/
+touch /usr/share/issabel/module_installer/%{name}-%{version}-%{release}/preversion_%{modname}.info
 if [ $1 -eq 2 ]; then
-    rpm -q --queryformat='%{VERSION}-%{RELEASE}' %{name} > /usr/share/elastix/module_installer/%{name}-%{version}-%{release}/preversion_%{modname}.info
+    rpm -q --queryformat='%{VERSION}-%{RELEASE}' %{name} > /usr/share/issabel/module_installer/%{name}-%{version}-%{release}/preversion_%{modname}.info
 fi
 
 %post
-pathModule="/usr/share/elastix/module_installer/%{name}-%{version}-%{release}"
+pathModule="/usr/share/issabel/module_installer/%{name}-%{version}-%{release}"
 
 # Run installer script to fix up ACLs and add module to Elastix menus.
-elastix-menumerge /usr/share/elastix/module_installer/%{name}-%{version}-%{release}/menu.xml
+issabel-menumerge /usr/share/issabel/module_installer/%{name}-%{version}-%{release}/menu.xml
 pathSQLiteDB="/var/www/db"
 mkdir -p $pathSQLiteDB
 preversion=`cat $pathModule/preversion_%{modname}.info`
@@ -76,16 +76,16 @@ rm -f $pathModule/preversion_%{modname}.info
 
 if [ $1 -eq 1 ]; then #install
   # The installer database
-    elastix-dbprocess "install" "$pathModule/setup/db"
+    issabel-dbprocess "install" "$pathModule/setup/db"
 elif [ $1 -eq 2 ]; then #update
     # Removing addons_installed modules
-    elastix-menuremove "addons_installed"
-    elastix-menuremove "addons_avalaibles"
+    issabel-menuremove "addons_installed"
+    issabel-menuremove "addons_avalaibles"
     # Removing addons_installed files
     rm -rf /var/www/html/modules/addons_installed
-    elastix-dbprocess "update"  "$pathModule/setup/db" "$preversion"
+    issabel-dbprocess "update"  "$pathModule/setup/db" "$preversion"
     # restart daemon
-    /sbin/service elastix-updaterd restart
+    /sbin/service issabel-updaterd restart
 fi
 
 ARCH=`uname -m`
@@ -106,35 +106,35 @@ fi
 
 # The installer script expects to be in /tmp/new_module
 mkdir -p /tmp/new_module/%{modname}
-cp -r /usr/share/elastix/module_installer/%{name}-%{version}-%{release}/* /tmp/new_module/%{modname}/
+cp -r /usr/share/issabel/module_installer/%{name}-%{version}-%{release}/* /tmp/new_module/%{modname}/
 chown -R asterisk.asterisk /tmp/new_module/%{modname}
 
 php /tmp/new_module/%{modname}/setup/installer.php
 rm -rf /tmp/new_module
 
-# Install elastix-updaterd as a service
-chkconfig --add elastix-updaterd
-chkconfig --level 2345 elastix-updaterd on
+# Install issabel-updaterd as a service
+chkconfig --add issabel-updaterd
+chkconfig --level 2345 issabel-updaterd on
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %preun
-pathModule="/usr/share/elastix/module_installer/%{name}-%{version}-%{release}"
+pathModule="/usr/share/issabel/module_installer/%{name}-%{version}-%{release}"
 if [ $1 -eq 0 ] ; then # Validation for desinstall this rpm
   echo "Delete Addons menus"
-  elastix-menuremove "%{modname}"
+  issabel-menuremove "%{modname}"
 
   echo "Dump and delete %{name} databases"
-  elastix-dbprocess "delete" "$pathModule/setup/db"
+  issabel-dbprocess "delete" "$pathModule/setup/db"
 fi
 
 %files
 %defattr(-, root, root)
 %{_localstatedir}/www/html/*
-/usr/share/elastix/module_installer/*
-/etc/init.d/elastix-updaterd
-/opt/elastix/elastix-updater
+/usr/share/issabel/module_installer/*
+/etc/init.d/issabel-updaterd
+/opt/issabel/issabel-updater
 /etc/pki/rpm-gpg/*
 /etc/yum.repos.d/*
 

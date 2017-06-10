@@ -33,7 +33,7 @@ global $arrConfModule;
 
 $arrConfModule = array(
     'templates_dir'     =>  'themes',
-    'dsn_conn_database' =>  "sqlite3:///$arrConf[elastix_dbdir]/addons.db",
+    'dsn_conn_database' =>  "sqlite3:///$arrConf[issabel_dbdir]/addons.db",
     'socket_conn_ip'    =>  'localhost',
     'socket_conn_port'  =>  20004,
     'url_webservice'    =>  'http://cloud.issabel.org/wsdl.php?type=wsdl&name=addons',
