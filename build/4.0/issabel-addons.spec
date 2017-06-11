@@ -31,7 +31,7 @@ Issabel Addons
 %install
 rm -rf $RPM_BUILD_ROOT
 
-# Files provided by all Elastix modules
+# Files provided by all Issabel modules
 mkdir -p    $RPM_BUILD_ROOT/var/www/html/
 mv modules/ $RPM_BUILD_ROOT/var/www/html/
 
@@ -67,7 +67,7 @@ fi
 %post
 pathModule="/usr/share/issabel/module_installer/%{name}-%{version}-%{release}"
 
-# Run installer script to fix up ACLs and add module to Elastix menus.
+# Run installer script to fix up ACLs and add module to Issabel menus.
 issabel-menumerge /usr/share/issabel/module_installer/%{name}-%{version}-%{release}/menu.xml
 pathSQLiteDB="/var/www/db"
 mkdir -p $pathSQLiteDB
