@@ -95,7 +95,7 @@ require_once 'libs/JSON.php';
  * - Se invoca do_checkStatus() con el estado almacenado en el navegador.
  * - Se consulta el estado según el demonio de actualización. Este estado lista
  *   el paquete que se está operando, y qué operación se hace. Por ejemplo:
- *   elastix-callcenter install
+ *   issabel-callcenter install
  * - Si se está haciendo una operación en un paquete, el estatus de operación
  *   indica más detalles. Se debe de recoger la lista de paquetes afectados.
  * - Si el estado del navegador (paquete y porcentaje) es idéntico al calculado,
