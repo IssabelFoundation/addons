@@ -84,6 +84,10 @@ class paloSantoAddons
 
     private function _getAddons($sNombre)
     {
+        global $arrConf;
+        $pDBSetting = new paloDB($arrConf['issabel_dsn']['settings']);
+        $issabel_version = get_key_settings($pDBSetting,'issabel_version_release');
+
         $this->_errMsg = '';
     	if (is_null($client = $this->_getSOAP())) return NULL;
 	try {
@@ -91,9 +95,9 @@ class paloSantoAddons
 		$sNombre = '';
 	    $architect = shell_exec('uname -i');	
 	    $iNumAddons = $client->getNumAddonsAvailables(
-		ISSABEL_WEBSERVICE_API_VERSION, 'name', $sNombre, 'all', FALSE,$architect);
+		$issabel_version, 'name', $sNombre, 'all', FALSE,$architect);
 	    $recordset = $client->getAddonsAvailables(
-		ISSABEL_WEBSERVICE_API_VERSION, $iNumAddons, 0, 'name', $sNombre, 
+		$issabel_version, $iNumAddons, 0, 'name', $sNombre, 
 		$this->getSID(), 'all', FALSE, $architect);
 
 	    // Listar los RPMS instalados en el sistema
