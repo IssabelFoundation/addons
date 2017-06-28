@@ -31,6 +31,13 @@ ini_set('include_path', dirname($argv[0]).":".ini_get('include_path'));
 require_once('Console/Getopt.php');     // Parseo de opciones de línea de comando
 require_once('AppLogger.class.php');    // Log del demonio
 
+require_once '/var/www/html/libs/paloSantoDB.class.php';
+require_once '/var/www/html/libs/paloSantoNotification.class.php';
+require_once '/var/www/html/libs/issabelEvents.class.php';
+
+$pdbACL = new paloDB('sqlite3:////var/www/db/acl.db');
+$pNot   = new paloNotification($pdbACL);
+
 $gsNombreSignal = NULL; // Número de la señal atrapada
 $goAppLog = NULL;
 
@@ -179,6 +186,10 @@ BANNEREND;
         pcntl_signal(SIGINT, 'manejadorPrimarioSignal');
         pcntl_signal(SIGHUP, 'manejadorPrimarioSignal');
 
+        // Create Scheduled Timed Events for checking public ip address server changes
+        $events = new Events();
+        $events->AddTimer("1d..2d", "checkExternIp", "between one and two days", EVENTS::EVENT_REPEAT);
+
         // Iniciar procesos mientras se deba continuar
         while ($bContinuar) {
             // Si la tarea ha finalizado o no existe, se debe iniciar
@@ -231,6 +242,8 @@ BANNEREND;
                 // Esperar medio segundo entre verificaciones de actividad
                 usleep(500000);
             }
+            // check scheduled timers
+            $events->CheckTimers();
         }
 
         // Restaurar manejador anterior de errores
@@ -449,4 +462,33 @@ function daemonErrorHandler($errno, $errmsg, $filename, $linenum, $vars)
         $goAppLog->output("$errortype[$errno]: $filename line $linenum - $errmsg");
     }
 }
+
+function configured_externip() {
+    $externip="";
+    if(is_file("/etc/asterisk/sip_general_additional.conf")) {
+        $conf = @parse_ini_file("/etc/asterisk/sip_general_additional.conf",false,INI_SCANNER_RAW);
+        $externip = $conf['externip'];
+    }
+    return $externip;
+}
+
+function checkExternIp($text) {
+
+    global $pNot;
+
+    $configured_externip = configured_externip();
+    $externip = '';
+    $fn = "http://myip.issabel.org:5060/whatismyip.php";
+    $ip = file_get_contents($fn);
+
+    preg_match('|^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})$|',$ip,$matches);
+    if (isset($matches[1])) {
+        $externip=$matches[1];
+
+        if($externip<>$configured_externip) {
+            $pNot->insertNotification('warning','Server public IP Address has changed');
+        }
+    }
+}
+
 ?>
