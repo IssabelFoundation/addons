@@ -85,6 +85,7 @@ elif [ $1 -eq 2 ]; then #update
     rm -rf /var/www/html/modules/addons_installed
     issabel-dbprocess "update"  "$pathModule/setup/db" "$preversion"
     # restart daemon
+    /usr/bin/systemctl daemon-reload
     /sbin/service issabel-updaterd restart
 fi
 
