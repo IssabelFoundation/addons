@@ -30,7 +30,7 @@ $arrConfModule = array(
     'dsn_conn_database' =>  "sqlite3:///$arrConf[issabel_dbdir]/addons.db",
     'socket_conn_ip'    =>  'localhost',
     'socket_conn_port'  =>  20004,
-    'url_webservice'    =>  'http://cloud.issabel.org/wsdl.php?type=wsdl&name=addons',
-    'url_images'        =>  'http://cloud.issabel.org/modules/addons_availables/images_newAddons',
+    'url_webservice'    =>  'https://cloud.issabel.org/wsdl.php?type=wsdl&name=addons',
+    'url_images'        =>  '//cloud.issabel.org/modules/addons_availables/images_newAddons',
 );
 ?>
