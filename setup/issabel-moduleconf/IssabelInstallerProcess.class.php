@@ -19,7 +19,9 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: IssabelInstallerProcess.class.php,v 1.48 2009/03/26 13:46:58 alex Exp $ */
+  $Id: IssabelInstallerProcess.class.php, Fri 07 Sep 2018 07:17:09 PM EDT, nicolas@issabel.com
+*/
+
 require_once('AbstractProcess.class.php');
 require_once('/var/www/html/libs/paloSantoDB.class.php');
 
@@ -812,6 +814,8 @@ Installing for dependencies:
                                 // Fedora 17 usa $sRutaRepo/gen/primary.xml.sqlite
                                 if (file_exists($sRutaRepo.'gen/'.basename($sRutaPrimary, '.gz').'.sqlite')) {
                                     $infoRepo[$sNombreRepo]['primary_db'] = 'gen/'.basename($sRutaPrimary, '.gz').'.sqlite';
+                                } else if(file_exists($sRutaRepo.'gen/primary.xml.sqlite')) {
+                                    $infoRepo[$sNombreRepo]['primary_db'] = 'gen/primary.xml.sqlite';
                                 } else {
                                     $infoRepo[$sNombreRepo]['primary_db'] = $sRutaPrimary.'.sqlite';
                                 }
