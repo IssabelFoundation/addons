@@ -90,7 +90,7 @@
 	margin: 16px 15px 0px 0px;
 	float:left;
 	display:inline-block;
-	border: 1px solid #999;
+	_border: 1px solid #999;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
