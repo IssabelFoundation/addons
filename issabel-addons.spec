@@ -90,7 +90,7 @@ elif [ $1 -eq 2 ]; then #update
 fi
 
 ARCH=`uname -m`
-CENTOSVER=`php -r 'if (preg_match("/CentOS.+?release (\d)/i", file_get_contents("/etc/redhat-release"), $regs)) print $regs[1];'`
+CENTOSVER=`php -r 'if (preg_match("/.+?release (\d)/i", file_get_contents("/etc/redhat-release"), $regs)) print $regs[1];'`
 if [ "$ARCH" != "i386" ] && [ "$ARCH" != "i686" ] && [ "$ARCH" != "x86_64" ] ; then
         echo "Incompatible architecture $ARCH , removing PostgreSQL repository..."
         rm -rf /etc/yum.repos.d/pgdg-91-centos.repo
