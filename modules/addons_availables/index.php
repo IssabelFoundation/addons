@@ -19,7 +19,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: index.php,v 1.1 2007/01/09 23:49:36 alex Exp $
+  $Id: index.php, Fri 09 Jun 2023 10:47:37 AM EDT, nicolas@issabel.com
 */
 
 /************************************************************
@@ -248,7 +248,7 @@ function do_iniciarInstallUpdate($smarty, $module_name, $local_templates_dir)
     $json = new Services_JSON();
     Header('Content-Type: application/json');
 
-    if (!preg_match("/^[\w-\.]+$/", $name_rpm)) {
+    if (!preg_match("/^[a-zA-Z0-9]+(-[a-zA-Z0-9]+)?$/", $name_rpm)) {
         $respuesta["error"] = _tr("Invalid addon name");
         return $json->encode($respuesta);
     }
@@ -285,7 +285,7 @@ function do_iniciarUninstall($smarty, $module_name, $local_templates_dir)
     $json = new Services_JSON();
     Header('Content-Type: application/json');
 
-    if (!preg_match("/^[\w-\.]+$/", $name_rpm)) {
+    if (!preg_match("/^[a-zA-Z0-9]+(-[a-zA-Z0-9]+)?$/", $name_rpm)) {
         $respuesta["error"] = _tr("Invalid addon name");
         return $json->encode($respuesta);
     }
@@ -328,7 +328,7 @@ function do_checkDependencies($smarty, $module_name, $local_templates_dir)
     $json = new Services_JSON();
     Header('Content-Type: application/json');
 
-    if (!preg_match("/^[\w-\.]+$/", $name_rpm)) {
+    if (!preg_match("/^[a-zA-Z0-9]+(-[a-zA-Z0-9]+)?$/", $name_rpm)) {
         $respuesta["error"] = _tr("Invalid addon name");
         return $json->encode($respuesta);
     }
