@@ -2,15 +2,15 @@
 
 Summary: Issabel Addons
 Name: issabel-addons
-Version: 4.0.0
-Release: 7
+Version: 5.0.0
+Release: 1
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
 Patch0:  repo-40.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildArch: noarch
-Requires(pre): issabel-framework >= 2.5.0-2
+Requires(pre): issabel-framework >= 5.0.0-1
 Requires(pre): chkconfig, php-soap
 Requires: yum
 # commands: /usr/bin/uname
