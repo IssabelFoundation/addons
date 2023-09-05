@@ -1,19 +1,6 @@
 [commercial-addons]
 name=Commercial-Addons RPM Repository for Issabel
-mirrorlist=http://mirror.issabel.org/?release=2.5&arch=$basearch&repo=commercial_addons
+mirrorlist=http://mirror.issabel.org/?release=5&arch=$basearch&repo=commercial_addons
 gpgcheck=1
 enabled=1
 gpgkey=http://repo.issabel.org/issabel/RPM-GPG-KEY-Issabel
-
-[LowayResearch]
-name=Loway Research Yum Repository
-baseurl=http://yum.loway.ch/RPMS
-gpgcheck=0
-enabled=0
-
-[iperfex]
-name=IPERFEX RPMs repository
-baseurl=http://packages.iperfex.com/centos/$releasever/$basearch/
-gpgkey=http://packages.iperfex.com/RPM-GPG-KEY-iperfex-repository
-enabled=0
-gpgcheck=1

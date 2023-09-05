@@ -7,7 +7,7 @@ Release: 1
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
-Patch0:  repo-40.patch
+#Patch0:  repo-40.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildArch: noarch
 Requires(pre): issabel-framework >= 5.0.0-1
@@ -26,7 +26,7 @@ Issabel Addons
 
 %prep
 %setup -n %{name}-%{version}
-%patch0 -p0
+#%patch0 -p0
 
 %install
 rm -rf $RPM_BUILD_ROOT
