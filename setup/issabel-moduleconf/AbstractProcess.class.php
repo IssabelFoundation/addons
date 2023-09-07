@@ -19,11 +19,12 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: AbstractProcess.class.php,v 1.2 2008/09/08 18:29:36 alex Exp $ */
+  $Id: AbstractProcess.class.php,v 1.2 2008/09/08 18:29:36 alex Exp $ 
+*/
 
 class AbstractProcess
 {
-    function inicioPostDemonio()
+    function inicioPostDemonio($infoConfig, &$oMainLog)
     {
         throw new Exception("AbstractProcess::inicioPostDemonio() llamado sin sobrecarga");
     }
