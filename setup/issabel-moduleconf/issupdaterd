@@ -467,7 +467,7 @@ function configured_externip() {
     $externip="";
     if(is_file("/etc/asterisk/sip_general_additional.conf")) {
         $conf = @parse_ini_file("/etc/asterisk/sip_general_additional.conf",false,INI_SCANNER_RAW);
-        $externip = $conf['externip'];
+        $externip = isset($conf['externip'])?$conf['externip']:'';
     }
     return $externip;
 }
