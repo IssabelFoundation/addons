@@ -1,5 +1,5 @@
 [commercial-addons]
-name=Commercial-Addons RPM Repository for Issabel
+name=Commercial-Addons RPM Repository for Issabel 5
 mirrorlist=http://mirror.issabel.org/?release=5&arch=$basearch&repo=commercial_addons
 gpgcheck=1
 enabled=1
