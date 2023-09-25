@@ -89,22 +89,6 @@ elif [ $1 -eq 2 ]; then #update
     /sbin/service issabel-updaterd restart
 fi
 
-ARCH=`uname -m`
-CENTOSVER=`php -r 'if (preg_match("/.+?release (\d)/i", file_get_contents("/etc/redhat-release"), $regs)) print $regs[1];'`
-if [ "$ARCH" != "i386" ] && [ "$ARCH" != "i686" ] && [ "$ARCH" != "x86_64" ] ; then
-        echo "Incompatible architecture $ARCH , removing PostgreSQL repository..."
-        rm -rf /etc/yum.repos.d/pgdg-91-centos.repo
-        rm -rf /etc/pki/rpm-gpg/RPM-GPG-KEY-PGDG-91
-elif [ "0$CENTOSVER" -ge 7 ] ; then
-        echo "CentOS base install too new, removing PostgreSQL repository..."
-        rm -rf /etc/yum.repos.d/pgdg-91-centos.repo
-        rm -rf /etc/pki/rpm-gpg/RPM-GPG-KEY-PGDG-91
-else
-        # import the GPG-key
-        echo "Importing RPM key for PostgreSQL repository..."
-        /bin/rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-PGDG-91
-fi
-
 # The installer script expects to be in /tmp/new_module
 mkdir -p /tmp/new_module/%{modname}
 cp -r /usr/share/issabel/module_installer/%{name}-%{version}-%{release}/* /tmp/new_module/%{modname}/
