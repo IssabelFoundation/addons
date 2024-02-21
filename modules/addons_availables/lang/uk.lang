@@ -1,0 +1,70 @@
+<?php
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+   Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Issabel Version 4.0                                                  |
+  | http://www.issabel.org                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2017 Issabel Foundation                                |
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on "AS IS"     |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  |                                                                      |
+  | Translated by: LLC LeNET                                             |
+  | Email: support@lenet.com.ua                                          |
+  +----------------------------------------------------------------------+
+  $Id: uk.lang,v 1.7 2023-10-11 00:14:27 LLC LENET support@lenet.ua Exp $ */
+global $arrLangModule;
+$arrLangModule=array(
+	"Installing/Updating" => "Встановлення/Оновлення",
+	"Transaction" => "Транзакція",
+	"Resolving dependencies" => "Вирішення Залежностей",
+	"Downloading package" => "Завантаження Пакета",
+	"Installing package" => "Встановлення Пакета",
+	"Refreshing repos" => "Оновлення Репо",
+	"Addon" => "Аддон",
+	"was successfully" => "було успішно",
+	"Uninstalling" => "Видалення",
+	"Removing package" => "Видалення Пакета",
+	"has no problem with dependencies" => "не має проблем із залежностями",
+	"Checking Dependencies" => "Перевірка Залежностей",
+	"Sorry, you can not cancel the transaction on this stage" => "На жаль, ви не можете скасувати транзакцію на цьому етапі",
+	"Cancelling. This process could take several minutes, please wait" => "Скасування. Цей процес може зайняти кілька хвилин, будь ласка зачекайте",
+	"The cancel signal was already sent, this could take several minutes, please wait" => "Сигнал скасування вже надіслано, це може тривати кілька хвилин, будь ласка зачекайте",
+	"Sorry, another transaction is already in process" => "Вибачте, інша транзакція вже виконується",
+	"No addons match your search criteria" => "Немає додатків які відповідають вашим критеріям пошуку",
+	"Filter by" => "Фільтрувати за",
+	"Available" => "Доступний",
+	"Installed" => "Встановлено",
+	"Purchased" => "Придбаний",
+	"Update Available" => "Доступне Оновлення",
+	"Name" => "Назва",
+	"Showing" => "Показано",
+	"of" => "з",
+	"by" => "по",
+	"TRIAL" => "ПРОБНИЙ",
+	"BUY" => "КУПИТИ",
+	"INSTALL" => "ВСТАНОВИТИ",
+	"UPDATE" => "ОНОВИТИ",
+	"UNINSTALL" => "ВИДАЛИТИ",
+	"More info" => "Детальніше",
+	"Addon Market" => "Маркет Додатків",
+	"Are you sure you want to cancel this transaction?" => "Ви впевнені що бажаєте скасувати цю операцію?",
+	"Location" => "Розташування",
+	"Please wait..." => "Будь ласка зачекайте...",
+	"Warning" => "Попередження",
+	"Note" => "Примітка",
+	"Server id is not defined, you need to register your Issabel" => "Ідентифікатор сервера не визначено, вам потрібно зареєструвати свою Issabel",
+	"Invalid addon name" => "Недійсне ім'я додатка",
+);
+?>
