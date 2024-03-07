@@ -19,7 +19,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: IssabelInstallerProcess.class.php, Fri 07 Sep 2018 07:17:09 PM EDT, nicolas@issabel.com
+  $Id: IssabelInstallerProcess.class.php, Thu 07 Mar 2024 02:13:48 PM EST, nicolas@issabel.com
 */
 
 require_once('AbstractProcess.class.php');
@@ -227,9 +227,8 @@ class IssabelInstallerProcess extends AbstractProcess
     {
         $inicio = stripos($sContenido, '> usage: yum [options] COMMAND');
         if ($inicio !== FALSE &&
-            strpos($sContenido, "List of Commands:\n") !== FALSE &&
-            strpos($sContenido, "Shell specific arguments:\n") !== FALSE &&
-            substr($sContenido, -6) == "\n    \n") {
+            strpos($sContenido, "List of Main Commands:\n") !== FALSE &&
+            strpos($sContenido, "Shell specific arguments:\n") !== FALSE) {
             return substr($sContenido, 0, $inicio);
         }
         return NULL;
@@ -698,7 +697,7 @@ Installing for dependencies:
         $sLineaPrevia = '';
         foreach ($lineas as $sLinea) {
             $regs = NULL;
-            if (!$bReporte && preg_match('/^\s+Package\s+Arch\s+Version\s+Repository\s+Size/', $sLinea)) {
+            if (!$bReporte && preg_match('/^\s+Package\s+Architecture\s+Version\s+Repository\s+Size/', $sLinea)) {
                 $bReporte = TRUE;
             } elseif (strpos($sLinea, "Transaction Summary") !== FALSE) {
                 $bReporte = FALSE;
@@ -748,7 +747,7 @@ Installing for dependencies:
         if ($this->_estadoPaquete['status'] != 'error' && count($this->_estadoPaquete['progreso']) <= 0) {
             $this->_estadoPaquete['action'] = 'none';
             $this->_estadoPaquete['warning'][] = 'No packages to install or update';
-            $this->oMainLog->output('INFO: switched to status: '.$this->_estadoPaquete['action']);
+            $this->oMainLog->output('INFO: progreso switched to status: '.$this->_estadoPaquete['action']);
         }
 
         /* La información de tamaño que proporciona yum es demasiado poco detallada
@@ -1163,11 +1162,13 @@ Installing for dependencies:
 
         if (!$this->_asegurarYumShellIniciado())
             return "ERR Unable to start Yum Shell\n";
+
         $this->_iniciarLoteComandos(array(
             'ts list repoload',
             'erase '.implode(' ', $listaArgs),
             'ts solve',
             'ts list final'));
+
         return "OK Processing\n";
     }
 
@@ -1244,21 +1245,23 @@ Installing for dependencies:
                 break;
             case 'depsolving':
                 // Realizando resolución de dependencias
-                $salidaCmdSolve = $this->_salidaComandoLote('ts solve');
+//                $salidaCmdSolve = $this->_salidaComandoLote('ts solve');
                 $salidaCmdTs = $this->_salidaComandoLote('ts list final');
-                if (!is_null($salidaCmdSolve) && strpos($salidaCmdSolve, "Success resolving dependencies") !== FALSE) {
+
+                //if (!is_null($salidaCmdSolve) && strpos($salidaCmdSolve, "Success resolving dependencies") !== FALSE) {
+                if (true) {
                     if (!is_null($salidaCmdTs)) {
                         // Ya es seguro recolectar los paquetes que conforman la transacción
                         $this->_estadoPaquete['status'] = 'idle';
                         if ($this->_estadoPaquete['testonly']) {
                             $this->_estadoPaquete['action'] = 'none';
-                            $this->oMainLog->output('INFO: switched to status: '.$this->_estadoPaquete['action']);
+                            $this->oMainLog->output('INFO: dipsolving 1 switched to status: '.$this->_estadoPaquete['action']);
                             $this->_estadoPaquete['testonly'] = FALSE;
                             $this->_recogerPaquetesTransaccion($salidaCmdTs);
                             $this->_iniciarLoteComandos(array('ts reset'));
                         } else {
                             $this->_estadoPaquete['action'] = 'confirm';
-                            $this->oMainLog->output('INFO: switched to status: '.$this->_estadoPaquete['action']);
+                            $this->oMainLog->output('INFO: depsolving 2 switched to status: '.$this->_estadoPaquete['action']);
                             $this->_estadoPaquete['testonly'] = FALSE;
                             $this->_recogerPaquetesTransaccion($salidaCmdTs);
 
@@ -1273,13 +1276,14 @@ Installing for dependencies:
 
                     }
                     $this->_inactivarCapturaStderr();
+
                 } else {
                     // Ocurren problemas de resolución de dependencias
                     if (!is_null($salidaCmdSolve) && !is_null($salidaCmdTs)) {
                         // Recoger los errores de dependencias que han ocurrido
                         $this->_estadoPaquete['status'] = 'idle';
                         $this->_estadoPaquete['action'] = 'none';
-                        $this->oMainLog->output('INFO: switched to status: '.$this->_estadoPaquete['action']);
+                        $this->oMainLog->output('INFO: depsolving 3 switched to status: '.$this->_estadoPaquete['action']);
                         $this->_estadoPaquete['testonly'] = FALSE;
                         $this->_estadoPaquete['warning'] = array();
                         $this->_estadoPaquete['errores'] = array();
@@ -1551,10 +1555,10 @@ Installing for dependencies:
                                 break;
                             }
                         }
-                    } elseif (stripos($sLinea, 'Finished Transaction') === 0 && stripos($sLinea, 'Finished Transaction Test') === FALSE) {
+                    } elseif ((stripos($sLinea, 'Finished Transaction') === 0 && stripos($sLinea, 'Finished Transaction Test') === FALSE) ||  (stripos($sLinea, 'Complete!') === 0)){
                         $this->_estadoPaquete['status'] = 'idle';
                         $this->_estadoPaquete['action'] = 'none';
-                        $this->oMainLog->output('INFO: switched to status: '.$this->_estadoPaquete['action']);
+                        $this->oMainLog->output('INFO: finished transaction switched to status: '.$this->_estadoPaquete['action']);
                         $this->_estadoPaquete['progreso'] = array();
                         $this->_estadoPaquete['errores'] = array();
                         $this->_estadoPaquete['warning'] = array();
@@ -1590,7 +1594,7 @@ Installing for dependencies:
                     $bDownloadError = TRUE;
                     $this->_estadoPaquete['status'] = 'error';
                     $this->_estadoPaquete['action'] = 'none';
-                    $this->oMainLog->output('INFO: switched to status: '.$this->_estadoPaquete['action']);
+                    $this->oMainLog->output('INFO: reporefresh switched to status: '.$this->_estadoPaquete['action']);
                     $this->_estadoPaquete['progreso'] = array();
                     $this->_estadoPaquete['errores'] = array();
                     $this->_estadoPaquete['warning'] = array();
@@ -1612,7 +1616,7 @@ Installing for dependencies:
                     $bDownloadError = TRUE;
                     $this->_estadoPaquete['status'] = 'error';
                     $this->_estadoPaquete['action'] = 'none';
-                    $this->oMainLog->output('INFO: switched to status: '.$this->_estadoPaquete['action']);
+                    $this->oMainLog->output('INFO: downloading switched to status: '.$this->_estadoPaquete['action']);
                     $this->_estadoPaquete['progreso'] = array();
                     $this->_estadoPaquete['errores'] = array();
                     $this->_estadoPaquete['warning'] = array();
