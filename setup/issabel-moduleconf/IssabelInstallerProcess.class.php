@@ -19,7 +19,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: IssabelInstallerProcess.class.php, Thu 07 Mar 2024 02:13:48 PM EST, nicolas@issabel.com
+  $Id: IssabelInstallerProcess.class.php, Thu 07 Mar 2024 05:20:18 PM EST, nicolas@issabel.com
 */
 
 require_once('AbstractProcess.class.php');
@@ -697,7 +697,7 @@ Installing for dependencies:
         $sLineaPrevia = '';
         foreach ($lineas as $sLinea) {
             $regs = NULL;
-            if (!$bReporte && preg_match('/^\s+Package\s+Architecture\s+Version\s+Repository\s+Size/', $sLinea)) {
+            if (!$bReporte && (preg_match('/^\s+Package\s+Architecture\s+Version\s+Repository\s+Size/', $sLinea) || preg_match('/^\s+Package\s+Arch\s+Version\s+Repository\s+Size/', $sLinea)) ) {
                 $bReporte = TRUE;
             } elseif (strpos($sLinea, "Transaction Summary") !== FALSE) {
                 $bReporte = FALSE;
@@ -755,8 +755,10 @@ Installing for dependencies:
            tanto, hay que abrir las bases SQLITE3 de yum y leer los datos de allí.
          */
 
+
         // Validar las rutas base de los repos
         $infoRepo = array();
+/*
         if ($this->_estadoPaquete['status'] != 'error') {
             $sRutaCache = $this->_cachedir;
             foreach ($this->_estadoPaquete['progreso'] as $paquete) {
@@ -788,11 +790,6 @@ Installing for dependencies:
                                 $sRutaPrimary = $dataObj->location['href'];
                                 $this->oMainLog->output('INFO: repo '.$sNombreRepo.' declares primary_db at '.$sRutaPrimary);
                                 $regs = NULL;
-                                /*
-                                if (preg_match('|^(.*)/(\S+)(\.bz2)|', $sRutaPrimary, $regs)) {
-                                    $sRutaPrimary = $regs[2];
-                                }
-                                */
                                 $sRutaPrimary = basename($sRutaPrimary, '.bz2');
                                 if (file_exists($sRutaRepo.'gen/primary_db.sqlite')) {
                                     $infoRepo[$sNombreRepo]['primary_db'] = 'gen/primary_db.sqlite';
@@ -836,6 +833,7 @@ Installing for dependencies:
                 }
             }
         }
+*/
 
         // Para cada paquete, se abre el archivo primary_db de su correspondiente
         // repo y se consulta vía SQL el tamaño del paquete.
@@ -855,6 +853,17 @@ Installing for dependencies:
                     $sVersion = $regs[3];
                     $sRelease = $regs[4];
 
+                    $comando = "dnf -q repoquery --queryformat '%{SIZE}~RPMS/%{NAME}-%{EVR}.%{ARCH}.rpm~%{PROVIDES}~%{REQUIRES}' ".$infoPaquete['nombre']."-{$sVersion}-{$sRelease}";
+                    $ret = `$comando`;
+                    $partes = preg_split("/~/",$ret);
+                    $infoPaquete['longitud']=$partes[0];
+                    $infoPaquete['rpmfile'] = $repo['ruta'].'packages/'.$partes[1];
+                    $provides = preg_split("/\n/",$partes[2]);
+                    $requires = preg_split("/\n/",$partes[3]);
+                    $infoPaquete['provides'] = $provides;
+                    $infoPaquete['requires'] = $requires;
+
+/*
                     // Abrir la conexión a la base de datos
                     $dsn = "sqlite3:///".$repo['ruta'].$repo['primary_db'];
                     $oDB = new paloDB($dsn);
@@ -909,6 +918,8 @@ Installing for dependencies:
 
                         $oDB->disconnect();
                     }
+
+*/
                 }
             }
         }
