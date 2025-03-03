@@ -1,0 +1,68 @@
+<?php
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+  Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Issabel version 1.0                                                  |
+  | http://www.issabel.org                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on an "AS IS"  |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  |                                                                      |
+  | Translate by: Mahir Gül                                              |
+  | Email: mahirgul@gmail.com                                            |
+  +----------------------------------------------------------------------+
+  $Id: tr.lang,v 1.0 18/02/2025 16:30:00 bmacias Exp $ */
+global $arrLangModule;
+$arrLangModule=array(
+	"Installing/Updating" => "Yükleniyor/Güncelleniyor",
+    "Transaction" => "İşlem",
+    "Resolving dependencies" => "Bağımlılıklar çözümleniyor",
+    "Downloading package" => "Paket indiriliyor",
+    "Installing package" => "Paket yükleniyor",
+    "Refreshing repos" => "Depolar yenileniyor",
+    "Addon" => "Eklenti",
+    "was successfully" => "başarıyla",
+    "Uninstalling" => "Kaldırılıyor",
+    "Removing package" => "Paket kaldırılıyor",
+    "has no problem with dependencies" => "bağımlılıklarla ilgili bir sorunu yok",
+    "Checking Dependencies" => "Bağımlılıklar Kontrol Ediliyor",
+    "Sorry, you can not cancel the transaction on this stage" => "Üzgünüz, bu aşamada işlemi iptal edemezsiniz",
+    "Cancelling. This process could take several minutes, please wait" => "İptal ediliyor. Bu işlem birkaç dakika sürebilir, lütfen bekleyin",
+    "The cancel signal was already sent, this could take several minutes, please wait" => "İptal sinyali zaten gönderildi, bu birkaç dakika sürebilir, lütfen bekleyin",
+    "Sorry, another transaction is already in process" => "Üzgünüz, başka bir işlem zaten devam ediyor",
+    "No addons match your search criteria" => "Arama kriterlerinize uygun eklenti bulunamadı",
+    "Filter by" => "Şuna göre filtrele",
+    "Available" => "Mevcut",
+    "Installed" => "Yüklü",
+    "Purchased" => "Satın Alınmış",
+    "Update Available" => "Güncelleme Mevcut",
+    "Name" => "Ad",
+    "Showing" => "Gösteriliyor",
+    "of" => "arasında",
+    "by" => "tarafından",
+    "TRIAL" => "DENEME",
+    "BUY" => "SATIN AL",
+    "INSTALL" => "YÜKLE",
+    "UPDATE" => "GÜNCELLE",
+    "UNINSTALL" => "KALDIR",
+    "More info" => "Daha fazla bilgi",
+    "Addon Market" => "Eklenti Pazarı",
+    "Are you sure you want to cancel this transaction?" => "Bu işlemi iptal etmek istediğinizden emin misiniz?",
+    "Location" => "Konum",
+    "Please wait..." => "Lütfen bekleyin...",
+    "Warning" => "Uyarı",
+    "Note" => "Not",
+    "Server id is not defined, you need to register your Issabel" => "Sunucu kimliği tanımlanmadı, Issabel'inizi kaydetmeniz gerekiyor"
+);
+?>
