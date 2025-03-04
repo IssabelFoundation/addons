@@ -1,0 +1,57 @@
+<html>
+<header>
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+</header>
+<body>
+
+<h1>{$node_name}</h1>
+
+<p align="Justify">Eklentiler modülü, kullanıcıların Issabel Proje Ekibi veya diğerleri tarafından oluşturulan yeni modülleri yükleyebilmesi veya satın alabilmesi (ticari eklentiler için) amacıyla geliştirilmiştir.</p>
+
+<p align="Justify">Bu modülün kullanımı oldukça basittir. Bu modüle girdiğinizde, kullanıcının yükleyebileceği veya satın alabileceği mevcut paketlerin bir listesi yüklenecektir. Yükleme tamamlandıktan sonra, mevcut paketlerin listesi gösterilecektir.</p>
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_addons1.png" border="0" />
+<p>Şekil 1</p></div>
+<br />
+
+<p>Devam eden bir işlem olması durumunda, işlemin ilerleme iletişim kutusu gösterilecektir. Aynı anda yalnızca bir paket yükleyebilirsiniz, yani bir sonraki paketi başlatabilmek için ilk yüklemenin tamamlanmasını beklemeniz gerekir. Bunun nedeni, paketlerin yüklenmesi için yum işleminin kullanılmasıdır.</p>
+
+<h2>Eklenti Filtreleme</h2>
+
+<p align="Justify">Şu anda bu modül aşağıdaki filtreleri sunmaktadır:</p>
+
+<p align="Justify">&nbsp;&nbsp;&nbsp;1. “Şuna göre filtrele” açılır menüsü: Bu menüde bulunan filtreleme seçenekleri şunlardır:</p>
+<ul>
+<li>Mevcut.- Tüm mevcut eklentileri döndürür.</li>
+<li>Yüklü.- Sunucuda şu anda yüklü olan tüm eklentileri döndürür.</li>
+<li>Satın Alınmış.- Satın alınmış tüm ticari eklentileri döndürür.</li>
+<li>Güncelleme Mevcut.- Sunucuda yüklü olan ve güncelleme için yeni bir sürümü bulunan tüm eklentileri döndürür.</li>
+</ul>
+
+<p align="Justify">&nbsp;&nbsp;&nbsp;2. “Ad” metin kutusu: Buraya, metin kutusuna girilen dizeyi içeren tüm eklentileri arayabilirsiniz. Aramayı yürütmek için büyüteç simgesine tıklayabilir veya enter tuşuna basabilirsiniz.</p>
+
+
+<h2>Sayfalar</h2>
+<p align="Justify">Başka bir sayfaya gitmek için sağ taraftaki kontrol sayfası bölümündeki düğmelere tıklamanız yeterlidir.</p>
+
+
+<h2>Bir eklenti hakkında daha fazla bilgi</h2>
+<p align="Justify">Belirli bir eklenti hakkında daha fazla bilgi edinmek isterseniz, her eklentinin altında bulunan "Daha fazla bilgi..." bağlantısına tıklamanız gerekir. Bu, daha fazla bilgi sağlayan sayfayı başka bir sekmede açacaktır.</p>
+
+
+<h2>Eylemler</h2>
+<p align="Justify">Temel olarak 5 eylem gerçekleştirebilirsiniz:</p>
+<ul>
+<li><b>YÜKLE .-</b> Bu düğmeye basmak, ilgili eklentiyi yükleyecektir. Devam eden bir işlem, ilerleme penceresindeki "X" işaretine tıklanarak da iptal edilebilir.</li>
+<li><b>GÜNCELLE .-</b> Bu düğmeye basmak, önceden yüklenmiş bir eklentinin güncellemesini gerçekleştirecektir.</li>
+<li><b>KALDIR .-</b> Bu düğmeye basmak, seçilen eklentiyi kaldıracaktır.</li>
+<li><b>DENEME .-</b> Bu düğme, ticari bir eklentinin deneme sürümünü yükler.</li>
+<li><b>SATIN AL .-</b> Bu düğme, ticari eklentileri satın almak içindir. İşlem, dahili olarak bağımlılık sorunlarının olup olmadığını kontrol eder, yoksa issabel-anahtarı kontrol edilir, işlem sunucunun henüz kayıtlı olmadığını bulursa, Issabel Sunucu Kayıt Formu penceresi görüntülenir (Bkz. Şekil 2). Kayıt formu doldurulduktan sonra, kullanıcının eklenti satın alma işlemine devam etmesine izin vermek için tarayıcı store.issabel.com'a yönlendirilir.</li>
+</ul>
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_registration.png" border="0" />
+<p>Şekil 2</p></div>
+<br />
+
+</body>
+</html>
